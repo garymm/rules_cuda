@@ -6,13 +6,14 @@ local_repository(
 )
 
 ######################
-# rules_bazel setup  #
+# rules_cuda setup  #
 ######################
-# Fetches the rules_bazel dependencies and initializes the cuda toolchain.
+# Fetches the rules_cuda dependencies and initializes the cuda toolchain.
 # If you want to have a different version of some dependency,
 # you should fetch it *before* calling this.
 
 load("@rules_cuda//cuda:repositories.bzl", "register_detected_cuda_toolchains", "rules_cuda_dependencies")
-rules_cuda_dependencies()
-register_detected_cuda_toolchains()
 
+rules_cuda_dependencies()
+
+register_detected_cuda_toolchains()

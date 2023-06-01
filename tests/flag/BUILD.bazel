@@ -196,7 +196,7 @@ cuda_library(
     hdrs = ["@rules_cuda_examples//basic:kernel.h"],
     copts = ["-G"],
     host_copts = ["-O1"],
-    rdc = 1,
+    rdc = True,
     tags = ["manual"],
 )
 

@@ -14,7 +14,7 @@ cuda_objects(
 
 cuda_library(
     name = "librdc",
-    rdc = 1,
+    rdc = True,
     deps = [
         ":a",
         ":b",

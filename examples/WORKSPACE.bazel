@@ -13,6 +13,45 @@ local_repository(
 # you should fetch it *before* calling this.
 
 load("@rules_cuda//cuda:repositories.bzl", "register_detected_cuda_toolchains", "rules_cuda_dependencies")
+
 rules_cuda_dependencies()
+
 register_detected_cuda_toolchains()
 
+THRUST_VERSION = "2.1.0"
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "thrust",
+    build_file_content = """
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "thrust",
+    hdrs = glob(["thrust/**"]),
+    includes = ["thrust"],
+    deps = ["@cub"],
+    visibility = ["//visibility:public"],
+)
+""",
+    strip_prefix = "thrust-%s" % THRUST_VERSION,
+    url = "https://github.com/NVIDIA/thrust/archive/refs/tags/%s.tar.gz" % THRUST_VERSION,
+)
+
+http_archive(
+    name = "cub",
+    build_file_content = """
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "cub",
+    hdrs = glob(["cub/**"]),
+    includes = ["cub"],
+    deps = ["@local_cuda//:cuda", "@rules_cuda//cuda:runtime"],
+    visibility = ["//visibility:public"],
+)
+""",
+    strip_prefix = "cub-%s" % THRUST_VERSION,  # must be the same version as Thrust
+    url = "https://github.com/NVIDIA/cub/archive/refs/tags/%s.tar.gz" % THRUST_VERSION,
+)

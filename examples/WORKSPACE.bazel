@@ -30,11 +30,12 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 cc_library(
     name = "thrust",
     hdrs = glob(["thrust/**"]),
-    includes = ["thrust"],
+    includes = [""],
     deps = ["@cub"],
     visibility = ["//visibility:public"],
 )
 """,
+    sha256 = "ebfa1a31867a95b8b0555ae45fc7c45538edfa5929ec718951eae0bbc7ed3108",
     strip_prefix = "thrust-%s" % THRUST_VERSION,
     url = "https://github.com/NVIDIA/thrust/archive/refs/tags/%s.tar.gz" % THRUST_VERSION,
 )
@@ -47,11 +48,11 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 cc_library(
     name = "cub",
     hdrs = glob(["cub/**"]),
-    includes = ["cub"],
-    deps = ["@local_cuda//:cuda", "@rules_cuda//cuda:runtime"],
+    includes = [""],
     visibility = ["//visibility:public"],
 )
 """,
+    sha256 = "60f7633c81c8c0e970bcf59fa6d19a0ed136524dbbcd52b94ea42721dde8cd6b",
     strip_prefix = "cub-%s" % THRUST_VERSION,  # must be the same version as Thrust
     url = "https://github.com/NVIDIA/cub/archive/refs/tags/%s.tar.gz" % THRUST_VERSION,
 )

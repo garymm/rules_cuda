@@ -13,3 +13,14 @@ cc_binary(
     name = "main",
     deps = [":thrust_cu"],
 )
+
+cuda_library(
+    name = "version_test_cu",
+    srcs = ["version_test.cu"],
+    deps = ["@thrust"],
+)
+
+cc_test(
+    name = "version_test",
+    deps = [":version_test_cu"],
+)

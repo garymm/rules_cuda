@@ -1,4 +1,5 @@
 #include <thrust/device_vector.h>
+#include <thrust/version.h>
 
 #include <iostream>
 

@@ -15,12 +15,7 @@ cc_binary(
 )
 
 cuda_library(
-    name = "version_test_cu",
+    name = "version_test",
     srcs = ["version_test.cu"],
     deps = ["@thrust"],
-)
-
-cc_test(
-    name = "version_test",
-    deps = [":version_test_cu"],
 )

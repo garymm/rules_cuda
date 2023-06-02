@@ -30,7 +30,7 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 cc_library(
     name = "thrust",
     hdrs = glob(["thrust/**"]),
-    includes = [""],
+    includes = ["."],
     deps = ["@cub"],
     visibility = ["//visibility:public"],
 )
@@ -47,8 +47,8 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
     name = "cub",
+    includes = ["."],
     hdrs = glob(["cub/**"]),
-    includes = [""],
     visibility = ["//visibility:public"],
 )
 """,
